@@ -1,0 +1,10 @@
+CRUD
+
+GET http://localhost:8000/api/v1/campaign : 캠페인 전체 리스트 보여주기
+GET http://localhost:8000/api/v1/campaign/1 : 특정 캠페인 보여주기
+POST http://localhost:8000/api/v1/campaign: 캠페인 생성
+PUT http://localhost:8000/api/v1/campaign/1 : 특정 캠페인 수정하기
+DELETE http://localhost:8000/api/v1/campaign/1 : 특정 캠페인 삭제하기
+
+
+

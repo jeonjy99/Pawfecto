@@ -1,19 +1,21 @@
 from rest_framework import serializers
 
-from .models import AccountBrand, AccountCreator, Campaign, CampaignAcceptance, Deliverable
+from .models import Campaign, CampaignAcceptance, Deliverable
+from django.contrib.auth import get_user_model
 
 
-class AccountBrandSerializer(serializers.ModelSerializer):
+User = get_user_model()
+
+class BrandInfoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = AccountBrand
-        fields = '__all__'
+        model = User
+        fields = ('name', 'brand_pet_focus', )
 
-
-class AccountCreatorSerializer(serializers.ModelSerializer):
+class CampaignListSerializer(serializers.ModelSerializer):
+    brand = BrandInfoSerializer(read_only=True)
     class Meta:
-        model = AccountCreator
+        model = Campaign
         fields = '__all__'
-
 
 class CampaignSerializer(serializers.ModelSerializer):
     class Meta:

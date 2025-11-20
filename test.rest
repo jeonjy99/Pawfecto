@@ -1,0 +1,22 @@
+GET http://localhost:8000/api/v1/campaign
+
+###
+
+POST http://localhost:8000/api/v1/campaign
+Content-Type: application/json
+
+{
+  "brand": 3,
+  "product_name": "프리미엄 연어 로우 알러지 사료",
+  "product_type": "사료",
+  "product_image_url": "https://cdn.pawfecto/petnuri/salmon_hypoallergenic_2025.png",
+  "product_description": "피부 트러블 예방을 위한 저자극 연어 단백질 사료입니다. 곡물 무첨가(Grain-Free) 레시피를 사용하여 알러지 반응을 최소화하고, 소화기 건강을 위한 프로바이오틱스가 포함되어 있습니다.",
+  "target_pet_type": "강아지",
+  "min_follower_count": 5000,
+  "requested_at": "2025-02-15T10:30:00Z",
+  "application_deadline_at": "2025-02-22T23:59:59Z",
+  "posting_start_at": "2025-02-25T00:00:00Z",
+  "posting_end_at": "2025-03-05T23:59:59Z",
+  "required_creator_count": 12,
+  "campaign_status": "OPEN"
+}
