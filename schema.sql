@@ -55,7 +55,7 @@ CREATE TABLE campaign_acceptance (
   campaign_id INT NOT NULL,
   acceptance_status ENUM('pending', 'accepted', 'rejected', 'completed') DEFAULT 'pending',
   applied_at DATETIME,
-  selected_at DATETIME,
+  accepted_at DATETIME,
   PRIMARY KEY (campaign_acceptance_id),
   FOREIGN KEY (creator_id) REFERENCES account_creator(creator_id),
   FOREIGN KEY (campaign_id) REFERENCES campaign(campaign_id)
