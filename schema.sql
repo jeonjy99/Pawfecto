@@ -7,7 +7,6 @@ CREATE TABLE account_brand (
   email VARCHAR(50) NOT NULL UNIQUE,
   phone_number VARCHAR(20),
   pet_type ENUM('dog', 'cat') NULL,
-  style_profile TEXT,
   profile_image_url VARCHAR(255),
   PRIMARY KEY (brand_id)
 );
@@ -26,7 +25,7 @@ CREATE TABLE account_creator (
   sns_url VARCHAR(255),
   total_post_count INT DEFAULT 0,
   follower_count INT DEFAULT 0,
-  style_profile TEXT,
+  style_tags ENUM('outdoor', 'energetic', 'no_preference', 'minimal', 'aesthetic', 'heartfelt', 'cozy', 'wholesome', 'funny', 'calm') NULL,
   profile_image_url VARCHAR(255),
   PRIMARY KEY (creator_id)
 );
@@ -41,6 +40,7 @@ CREATE TABLE campaign (
   min_follower_count INT DEFAULT 0,
   requested_at DATETIME,
   application_deadline_at DATE,
+  style_tags ENUM('outdoor', 'energetic', 'no_preference', 'minimal', 'aesthetic', 'heartfelt', 'cozy', 'wholesome', 'funny', 'calm') NULL,
   posting_start_at DATE,
   posting_end_at DATE,
   required_creator_count INT,
