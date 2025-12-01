@@ -1,3 +1,7 @@
+GET http://localhost:8000/accounts/user
+
+###
+
 GET http://localhost:8000/api/v1/campaign
 
 ###
