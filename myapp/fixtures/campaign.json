@@ -1,0 +1,30 @@
+{}{
+    "model": "accounts.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$demo123$HASH",
+      "is_superuser": false,
+      "username": "puppy_daily",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-11-01T10:30:00Z",
+
+      "account_type": "creator",
+      "name": "강푸름",
+      "email": "creator1@puppygram.kr",
+      "phone_number": "010-1234-5678",
+
+      "profile_image": null,
+      "profile_image_url": "https://example-cdn.petlink.kr/profiles/creator1.jpg",
+
+      "address": "서울특별시 마포구 동교로 45, 201호",
+      "pet_type": "dog",
+      "sns_handle": "@puppy_daily",
+      "sns_url": "https://www.instagram.com/puppy_daily",
+      "total_post_count": 824,
+      "follower_count": 183000,
+
+      "style_tags": "wholesome",
+      "groups": [],
+      "user_permissions": []
+    }
