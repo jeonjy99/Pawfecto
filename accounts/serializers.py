@@ -1,6 +1,8 @@
 from rest_framework import serializers
-from .models import User
+# from .models import User
+from django.contrib.auth import get_user_model
 
+User = get_user_model()
 
 
 '''
@@ -45,11 +47,17 @@ class CreatorSerializer(serializers.ModelSerializer):
         ]
 
 
+
 # -----------------------------------------------------------
 # 통합 UserSerializer (Brand/Creator 자동 구분)
 # CampaignSerializer에서 brand=UserSerializer() 사용 가능
 # CampaignAcceptanceSerializer에서도 creator=UserSerializer() 사용 가능
 # -----------------------------------------------------------
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'
 
 # class UserSerializer(serializers.Serializer):
 #     """
