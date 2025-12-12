@@ -6,7 +6,7 @@ Content-Type: application/json
 
 {
   "username": "puppy_daily",
-  "password": "test1234"
+  "password": ""
 }
 
 ### 로그인 응답에서 token을 복사해 아래 변수에 넣어라
