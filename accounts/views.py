@@ -73,8 +73,6 @@ def login_view(request):
             status=status.HTTP_200_OK
         )
 
-
-
 # ============================================
 # 3) 로그아웃
 # ============================================
@@ -87,7 +85,6 @@ def logout_view(request):
         return Response({"message": "logout success"}, status=status.HTTP_200_OK)
 
 
-
 # ============================================
 # 4) 내 정보 조회
 # ============================================
@@ -96,7 +93,6 @@ def logout_view(request):
 def me(request):
     serializer = UserSerializer(request.user)
     return Response(serializer.data, status=200)
-
 
 
 # ============================================
@@ -110,8 +106,6 @@ def brand_profile(request, brand_id):
     return Response(serializer.data, status=200)
 
 
-
-
 # ============================================
 # 6) 크리에이터 프로필 조회
 # ============================================
@@ -123,7 +117,6 @@ def creator_profile(request, creator_id):
         return Response({"error": "Creator not found"}, status=404)
     serializer = UserSerializer(qs.first())
     return Response(serializer.data, status=200)
-
 
 
 # ============================================
