@@ -20,16 +20,6 @@ creators = User.objects.filter(acount_type="creator")
 brands = User.objects.filter(acount_type="brand")
 '''
 
-# # Create your models here.
-# -----------------------------------
-# StyleTag 모델
-# -----------------------------------
-class StyleTag(models.Model):
-    code = models.CharField(max_length=50, unique=True)
-    name = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.name
 
 # -----------------------------------
 # User 모델 (Brand / Creator 통합)
@@ -56,7 +46,7 @@ class User(AbstractUser):
 
     # Creator 전용 필드
     address = models.TextField(null=True, blank=True)
-    pet_type = models.CharField(max_length=100, null=True, blank=True)
+    pet_type = models.CharField(max_length=100, null=True, blank=True)   # 중복 정의되어 있음
     sns_handle = models.CharField(max_length=50, null=True, blank=True)
     sns_url = models.CharField(max_length=255, null=True, blank=True)
     total_post_count = models.IntegerField(null=True, blank=True)

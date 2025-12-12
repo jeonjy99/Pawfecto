@@ -20,17 +20,6 @@ class StyleTagSerializer(serializers.ModelSerializer):
 class CampaignSerializer(serializers.ModelSerializer):
     brand = BrandSerializer(read_only=True)
 
-    # style_tags 읽기용(nested)
-    style_tags = StyleTagSerializer(many=True, read_only=True)
-
-    # 쓰기용(PK 배열)
-    style_tag_ids = serializers.PrimaryKeyRelatedField(
-        many=True,
-        queryset=StyleTag.objects.all(),
-        write_only=True,
-        required=False
-    )
-
     class Meta:
         model = Campaign
         fields = [
@@ -41,8 +30,7 @@ class CampaignSerializer(serializers.ModelSerializer):
             'product_description',
             'target_pet_type',
             'min_follower_count',
-            'style_tags',        # 읽기 전용 태그 목록
-            'style_tag_ids',     # 쓰기용 ID 목록
+            'style_tag',              # 단일 스타일 태그
             'requested_at',
             'application_deadline_at',
             'posting_start_at',
@@ -50,41 +38,15 @@ class CampaignSerializer(serializers.ModelSerializer):
             'required_creator_count',
         ]
 
+    def validate_style_tag(self, value):
+        if value is None:
+            return value
 
-    # create 오버라이드: style_tags M2M 저장 처리
-    def create(self, validated_data):
-        tag_ids = validated_data.pop("style_tag_ids", [])
+        # StyleTag.code 유효성만 검증
+        if not StyleTag.objects.filter(code=value).exists():
+            raise serializers.ValidationError("Invalid style_tag value.")
 
-        # 캠페인 생성
-        campaign = Campaign.objects.create(**validated_data)
-
-        # 태그 선택이 없으면 no_preference 자동 적용
-        if not tag_ids:
-            no_pref = StyleTag.objects.get(code="no_preference")
-            tag_ids = [no_pref]
-
-        campaign.style_tags.set(tag_ids)
-
-        return campaign
-
-
-    # update 오버라이드: 부분 업데이트 처리
-    def update(self, instance, validated_data):
-        tag_ids = validated_data.pop("style_tag_ids", None)
-
-        # 일반 필드 업데이트
-        for attr, value in validated_data.items():
-            setattr(instance, attr, value)
-        instance.save()
-
-        # 태그 수정 요청이 있을 때만 처리
-        if tag_ids is not None:
-            if not tag_ids:
-                no_pref = StyleTag.objects.get(code="no_preference")
-                tag_ids = [no_pref]
-            instance.style_tags.set(tag_ids)
-
-        return instance
+        return value
 
 
 
